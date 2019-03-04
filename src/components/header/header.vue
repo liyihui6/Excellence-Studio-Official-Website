@@ -80,8 +80,8 @@
             </FormItem>
             <Button style="width:100%" type="primary" @click="loginSubmit('formInline')">登录</Button>
             <div style="padding-top: 10px">
-              <a href="#"><span style="float:left;">还未注册？</span></a>
-              <a href="#"><span style="float:right;">忘记密码？</span></a>
+              <a href="#" @click.prevent="noRegister"><span style="float:left;">还未注册？</span></a>
+              <a href="#" @click.prevent="forgetPassword"><span style="float:right;">忘记密码？</span></a>
             </div>
           </Form>
         </div>
@@ -316,6 +316,12 @@ export default {
       }
       this.apply_progress = true
     },
+    noRegister () {
+      this.$Message.info('注册尚未开放，请联系王长城！')
+    },
+    forgetPassword () {
+      this.$Message.info('请联系王长城！')
+    },
     showapply () {
       if (!this.user.studName) {
         this.$Message.error('请先登录')
@@ -401,6 +407,7 @@ export default {
             this.user.studName = data.studName
             this.apply = false
             this.$Message.success('Success!')
+            this.$refs[name].resetFields()
           }).catch(res => {
             console.log(res)
           })
@@ -426,6 +433,7 @@ export default {
                 Vue.set(this.user, 'studName', '路人甲')
               }
               this.modal1 = false
+              this.$refs[name].resetFields()
             } else if (res.code === 0) {
               this.$Message.success('账号或者密码错误！')
             } else {
