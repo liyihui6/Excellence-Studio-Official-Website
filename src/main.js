@@ -10,7 +10,7 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 require('animate.css/animate.min.css')
 
-axios.defaults.baseURL = 'http://10.200.3.110:8080' // 配置axios请求的地址
+axios.defaults.baseURL = 'http://47.101.210.125:80' // 配置axios请求的地址
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8'
 
 Vue.prototype.$http = axios

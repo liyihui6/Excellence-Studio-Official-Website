@@ -12,6 +12,7 @@ import direction from '@/components/about/direction/direction'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

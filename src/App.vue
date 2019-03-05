@@ -22,6 +22,9 @@ export default {
     }
   },
   methods: {
+  },
+  mounted () {
+    this.$router.push('/index')
   }
 }
 </script>
