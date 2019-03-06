@@ -317,10 +317,10 @@ export default {
       this.apply_progress = true
     },
     noRegister () {
-      this.$Message.info('注册尚未开放，请联系王长城！')
+      this.$Message.info('注册尚未开放，请联系王长城学长！')
     },
     forgetPassword () {
-      this.$Message.info('请联系王长城！')
+      this.$Message.info('请联系王长城学长！')
     },
     showapply () {
       if (!this.user.studName) {
@@ -362,12 +362,13 @@ export default {
       let context = this.Feedback
       let time = (new Date()).getTime()
       this.$http.post(`/putSuggest?suggestTitle=${title}&studNum=${this.user.studNum}&suggestContext=${context}&suggestTime=${time}`).then(res => {
-        console.log(res)
+        this.Opinion = false
+        this.$Message.info('提交成功')
       }).catch(res => {
-        console.log(res)
+        this.$Message.info('提交失败')
       })
-      this.Opinion = false
-      this.$Message.info('提交成功')
+      this.OpinionType = ''
+      this.Feedback = ''
     },
     zhuxiao () {
       if (!this.user.studName) {
@@ -403,7 +404,7 @@ export default {
             studNum: this.user.studNum,
             email: registerdata.mail
           }
-          this.$http.post(`/putApply?email=${data.email}&studName=${data.Name}&className=${data.className}&tec=${data.tec}&knowDeep=${data.knowDeep}&knowWe=${data.knowWe}&pee=${data.pee}&suggest=${data.suggest}&studNum=${data.studNum}`, JSON.stringify(data)).then(res => {
+          this.$http.post(`/putApply?email=${data.email}&studName=${data.studName}&className=${data.className}&tec=${data.tec}&knowDeep=${data.knowDeep}&knowWe=${data.knowWe}&pee=${data.pee}&suggest=${data.suggest}&studNum=${data.studNum}`, JSON.stringify(data)).then(res => {
             this.user.studName = data.studName
             this.apply = false
             this.$Message.success('Success!')
