@@ -65,6 +65,7 @@
         title="登 录"
         width="400px"
         @on-ok="ok"
+        :mask-closable="false"
         @on-cancel="cancel">
         <div style="padding: 18px;">
           <Form ref="formInline" :model="formInline" :rules="ruleInline">
@@ -109,14 +110,15 @@
         v-model="apply_progress"
         title="申请进度"
         width="800px"
+        :mask-closable="false"
         @on-cancel="cancel">
         <div style="padding: 18px;">
           <Steps :current="user.status">
-            <Step title="提交申请" content="这里是该步骤的描述信息"></Step>
-            <Step title="申请通过" content="这里是该步骤的描述信息"></Step>
-            <Step title="笔试通过" content="这里是该步骤的描述信息"></Step>
-            <Step title="面试通过" content="这里是该步骤的描述信息"></Step>
-            <Step title="正式成员" content="这里是该步骤的描述信息"></Step>
+            <Step title="提交申请" content="尚未提交申请表"></Step>
+            <Step title="申请审核" content="提交申请表，等待审核"></Step>
+            <Step title="笔试" content="申请通过，等待笔试"></Step>
+            <Step title="面试" content="笔试通过，等待面试"></Step>
+            <Step title="正式成员" content="面试通过，成为正式成员"></Step>
           </Steps>
         </div>
         <div slot="footer">
@@ -126,6 +128,7 @@
         v-model="apply"
         title="申请"
         width="1000px"
+        :mask-closable="false"
         @on-cancel="cancel">
         <div style="padding: 18px;">
           <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
@@ -183,6 +186,7 @@
         v-model="members"
         title="正式成员"
         width="1000px"
+        :mask-closable="false"
         @on-cancel="cancel">
         <div style="padding: 18px;">
           <Table height="400" border :columns="columns" :data="membersData"></Table>
